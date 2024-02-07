@@ -167,7 +167,7 @@ while choice != "9"{
             
             if let theStudent = readLine(){
                 if nameInBook(theStudent){
-                    print("\(getName(theStudent))'s grades for this class are")
+                    print("\(getName(theStudent))'s grades for this class are:")
                     
                     print(getStudentAllGrades(theStudent))
                 }
@@ -202,21 +202,26 @@ while choice != "9"{
             
             if let assignment = readLine(){
                 if isNumber(assignment){
-                    var sum: Double = 0.0
-                    var index: Int = Int(assignment)! - 1
-                    
-                    //if the user entered an assignment number that does not exist in the gradeBook
-                    if index > 9 || index < 0{
-                        print("Sorry, that assignment is not in the grade book")
+                    if assignment.contains("."){
+                        print("Invalid assignment number")
                     }
-                    //actual functionality
                     else{
-                        for i in 0...(gradeBook.count - 1){
-                            sum += Double(gradeBook[i].allGrades[index])!
-                        }
+                        var sum: Double = 0.0
+                        var index: Int = Int(assignment)! - 1
                         
-                        var theAverage: Double = round(100*sum/Double(gradeBook.count))/100
-                        print("The average for assignment #\(assignment) is \(theAverage)")
+                        //if the user entered an assignment number that does not exist in the gradeBook
+                        if index > 9 || index < 0{
+                            print("Sorry, that assignment is not in the grade book")
+                        }
+                        //actual functionality
+                        else{
+                            for i in 0...(gradeBook.count - 1){
+                                sum += Double(gradeBook[i].allGrades[index])!
+                            }
+                            
+                            var theAverage: Double = round(100*sum/Double(gradeBook.count))/100
+                            print("The average for assignment #\(assignment) is \(theAverage)")
+                        }
                     }
                 }
                 //message for if the input entered is not a number
